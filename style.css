@@ -15,12 +15,18 @@ textarea {
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  background-color: #c2f5ba;
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
 }
 
+#currentDay {
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+}
 .description {
   white-space: pre-wrap;
 }
