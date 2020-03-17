@@ -4,6 +4,45 @@
 //that I can call on in my localStorage?
 window.onload = function(){
 
+    //WORK IN PROGRESS - call a new quote ONCE per day vs every reload
+    const dayOftheWeek = moment().format('dddd');
+    localStorage.setItem("todayIs", dayOftheWeek);
+    
+
+    
+
+    /* if (localStorage.getItem("todayIs") === dayOftheWeek) {
+        quote.text(localStorage.getItem("myQuote"));
+    }  */
+    quoteCall();
+
+//daily inspirational quote from API
+function quoteCall () {
+    let quote = $("#QOTD");
+    //let author = $("#quoteAuthor");
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://andruxnet-random-famous-quotes.p.rapidapi.com/?&cat=famous",
+            "method": "POST",
+            "headers": {
+                "x-rapidapi-host": "andruxnet-random-famous-quotes.p.rapidapi.com",
+                "x-rapidapi-key": "99167c5176mshbc77c09ad508f00p1d4a25jsn125998e15600",
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "data": {}
+        }
+        
+        $.ajax(settings).done(function (response) {
+            let todaysQuote = quote.text(`"${response[0].quote}"`);
+            localStorage.setItem("myQuote", todaysQuote);
+             console.log(todaysQuote);
+        });
+    
+    
+};
+
+
 
 //display current time and date at the top of the page, below h1 and p tag id="currentDay"
 $("#currentDay").html(moment().format('LLLL'));
@@ -48,10 +87,10 @@ $("#saveMyStuff5").click(function () {
 
 //code for changing the color of each row based on the current time    
 
-var currentTime = moment().format('LT');
-var currentHour = moment().format('h')
+const currentTime = moment().format('LT');
+const currentHour = moment().format('h')
 
-console.log(currentHour);
+
 
 
       
